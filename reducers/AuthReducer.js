@@ -4,10 +4,11 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  THEME_CHANGED
+  CHALLENGE_CREATE
+  // THEME_CHANGED
 } from '../actions/types';
 
-const INITIAL_STATE = { email: '', password: '', user: null, error: '', loading: false, theme: '' };
+const INITIAL_STATE = { email: '', password: '', user: null, error: '', loading: false, theme: null };
 
 export default (state = INITIAL_STATE, action) => {
     console.log(action);
@@ -31,9 +32,12 @@ export default (state = INITIAL_STATE, action) => {
         // password: ''
       case LOGIN_USER_FAIL:
         return { ...state, error: 'Authentication Failed', loading: false, password: '' };
-      case THEME_CHANGED:
-        console.log('in THEME_CHANGED in authreducer: ', action.payload);
+      case CHALLENGE_CREATE:
+        console.log('action.payload: ', action.payload);
         return { ...state, theme: action.payload };
+      // case THEME_CHANGED:
+      //   console.log('in THEME_CHANGED in authreducer: ', action.payload);
+      //   return { ...state, theme: action.payload };
       default:
         return state;
     }

@@ -6,7 +6,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  THEME_CHANGED
+  CHALLENGE_CREATE
+  // THEME_CHANGED
 } from './types';
 
 export const emailChanged = (text) => {
@@ -23,10 +24,30 @@ export const passwordChanged = (text) => {
     };
 };
 
-export const themeChanged = (theme) => {
-  return {
-    type: THEME_CHANGED,
-    payload: theme
+// export const themeChanged = (theme) => {
+//   return {
+//     type: THEME_CHANGED,
+//     payload: theme
+//   };
+// };
+
+export const challengeCreate = (theme) => {
+  console.log('theme: ', theme);
+
+  const today = new Date();
+  const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date+' '+time;
+
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/challenges`)
+    .push({ theme, start_date: dateTime })
+    .then(() => {
+      dispatch({ type: CHALLENGE_CREATE, payload: theme });
+      Actions.themePage();
+    });
   };
 };
 

@@ -5,7 +5,7 @@ import { View, Text, LayoutAnimation } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Card, CardSection, Button } from './common';
-import { themeChanged } from '../actions';
+import { challengeCreate } from '../actions';
 
 
 class ThemePage extends Component {
@@ -31,13 +31,16 @@ class ThemePage extends Component {
 
       const myThemes = ['BLACK AND WHITE', 'LEADING LINES', 'CIRCLES', 'WEEE!!!', 'MORNING', 'LONG EXPOSURE', 'NIGHT SKY', 'PORTRAIT OF A STRANGER', 'WATER', 'SELF-PORTRAIT', 'SILHOUTTE', 'MOVEMENT', 'MESSY', 'WEATHER', 'TRANSPORTATION', 'BLUE', 'RED', 'COLORS', 'MINIMALISM', 'BOKEH', 'SOLITUDE', 'GET HIGH', 'GET LOW', 'FASHION', 'TREND', 'STREET CANDID', 'FOOD', 'SYMMETRY', 'WABISABI', 'MUSIC', 'TEXTURE', 'CLOSE-UP', 'LIGHT PAINTING', 'BUSINESS', 'FORMAL', 'FAVORITE', 'MID-DAY', 'FEET', 'HANDS', 'SHADOWS', 'ANGLES', 'GROWTH', 'SOFT', 'FRIENDSHIP', 'FURRY FRIENDS', 'DISTANCE', 'NOSTALGIA', 'BLUR'];
       const rand = myThemes[Math.floor(Math.random() * myThemes.length)];
-      // const { theme } = this.state;
-      // this.setState({ theme: 'WEEEEE' });
-      console.log('onButtonPress-before themeChanged: ', this.props.theme);
-      this.props.themeChanged(rand);
-      console.log('onButtonPress:', this.props.theme);
-      // ;
-      // return <Text>BLACK AND WHITE</Text>;
+
+      const start_date = '07-01-2017'
+
+      this.props.challengeCreate(rand);
+
+
+      // this.props.photoCreate({
+      //   name, description, category: category || 'uncategorized', image_url });
+      // this.props.themeChanged(rand);
+
     }
 
     onInspirationPress() {
@@ -57,7 +60,7 @@ class ThemePage extends Component {
     }
 
     renderChallengeButton() {
-      switch (this.props.theme === '') {
+      switch (this.props.theme === null) {
         case true:
           console.log('THEMEPAGE Im in switch case true in renderButton');
           console.log('THEMEPAGE STATE.THEME:', this.props.theme);
@@ -68,7 +71,7 @@ class ThemePage extends Component {
           );
         case false:
           console.log('THEMEPAGE Im in switch case false in renderButton');
-          console.log('THEMEPAGE STATE.THEME:', this.props.theme);
+          console.log('THEMEPAGE this.props.THEME:', this.props.theme);
           return (
                 <View style={{ alignSelf: 'center', flex: 1, paddingBottom: 15, paddingTop: 10 }}>
                   <Text
@@ -101,7 +104,7 @@ class ThemePage extends Component {
     }
 
     renderInspireButton() {
-      switch (this.props.theme !== '') {
+      switch (this.props.theme !== null) {
         case true:
           return (
               <Button onPress={this.onInspirationPress.bind(this)} style={{ width: 300 }}>GET INSPIRED - 500px</Button>
@@ -111,19 +114,19 @@ class ThemePage extends Component {
       }
     }
 
-    renderFlickrButton() {
-      switch (this.props.theme !== '') {
-        case true:
-          return (
-              <Button onPress={this.onFlickrPress.bind(this)} style={{ width: 300 }}>GET INSPIRED - Flickr</Button>
-          );
-        case false: break;
-        default: break;
-      }
-    }
+    // renderFlickrButton() {
+    //   switch (this.props.theme !== null) {
+    //     case true:
+    //       return (
+    //           <Button onPress={this.onFlickrPress.bind(this)} style={{ width: 300 }}>GET INSPIRED - Flickr</Button>
+    //       );
+    //     case false: break;
+    //     default: break;
+    //   }
+    // }
 
     renderUnsplashButton() {
-      switch (this.props.theme !== '') {
+      switch (this.props.theme !== null) {
         case true:
           return (
               <Button onPress={this.onUnsplashPress.bind(this)} style={{ width: 300 }}>GET INSPIRED - unsplashed</Button>
@@ -134,7 +137,7 @@ class ThemePage extends Component {
     }
 
     renderUploadButton() {
-      switch (this.props.theme !== '') {
+      switch (this.props.theme !== null) {
         case true:
           return (
               <Button onPress={this.onUploadPress.bind(this)}>UPLOAD PHOTO</Button>
@@ -145,7 +148,7 @@ class ThemePage extends Component {
     }
 
     renderCountdown() {
-          switch (this.props.theme !== '') {
+          switch (this.props.theme !== null) {
             case true:
               return (
                   <View style={{ alignSelf: 'center', flex: 1, paddingBottom: 30, paddingTop: 10 }}>
@@ -210,9 +213,7 @@ class ThemePage extends Component {
             {this.renderUnsplashButton()}
           </CardSection>
 
-          <CardSection>
-            {this.renderFlickrButton()}
-          </CardSection>
+
 
           <CardSection>
             {this.renderUploadButton()}
@@ -224,9 +225,9 @@ class ThemePage extends Component {
 
 const mapStateToProps = ({ auth }) => {
   const { theme } = auth;
-
+  console.log('mapStateToProps theme: ', theme);
   return { theme };
 };
 
 
-export default connect(mapStateToProps, { themeChanged })(ThemePage);
+export default connect(mapStateToProps, { challengeCreate })(ThemePage);

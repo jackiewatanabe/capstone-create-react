@@ -1,11 +1,24 @@
-// import firebase from 'firebase';
+import firebase from 'firebase';
 import axios from 'axios';
 // import { Actions } from 'react-native-router-flux';
 import {
   SEARCH_PHOTOS_FETCH_SUCCESS,
   SEARCH_FLICKR_FETCH_SUCCESS,
-  SEARCH_UNSPLASH_FETCH_SUCCESS
+  SEARCH_UNSPLASH_FETCH_SUCCESS,
+  CHALLENGE_CREATE
 } from './types';
+
+
+export const challengeFetch = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/challenges/`)
+      .on('value', snapshot => {
+        dispatch({ type: CHALLENGE_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
+};
 
 
 export const searchPhotosFetch = ({ theme }) => {

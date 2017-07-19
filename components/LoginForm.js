@@ -11,22 +11,23 @@ class LoginForm extends Component {
   //   super();
   //   console.warn(Object.keys(CameraRoll));
   // }
+  state = { fontLoaded: false };
 
 
-  async _loadAssetsAsync() {
+  // async _loadAssetsAsync() {
 
 
-  const fontAssets = cacheFonts([
-    FontAwesome.font,
-    IowanOldStyle.font
-  ]);
+  // const fontAssets = cacheFonts([
+  //   FontAwesome.font,
+  //   IowanOldStyle.font
+  // ]);
 
-  await Promise.all([
-    ...fontAssets,
-  ]);
-
-  this.setState({appIsReady: true});
-}
+  // await Promise.all([
+  //   ...fontAssets,
+  // ]);
+  //
+  // this.setState({appIsReady: true});
+// }
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -66,9 +67,13 @@ class LoginForm extends Component {
         <Card>
           <CardSection style={{ paddingTop: 30, paddingBottom: 30, alignSelf: 'center', width: 250 }}>
             <View style={{ flex: 1, alignSelf: 'center' }}>
-              <Text style={{ fontFamily: 'IowanOldStyle', textAlign: 'center', fontStyle: 'italic', fontSize: 18 }}>
+            {
+              this.state.fontLoaded ? (
+              <Text style={{ fontFamily: 'AmericanTypewriter-CondensedLight', textAlign: 'center', fontStyle: 'italic', fontSize: 18 }}>
                 Becoming a better photographer begins with taking more pictures. Push yourself to try new techniques with just one image a week.
               </Text>
+              ) : null
+            }
             </View>
           </CardSection>
           <CardSection>
@@ -84,6 +89,7 @@ class LoginForm extends Component {
               placeholder="email@gmail.com"
               onChangeText={this.onEmailChange.bind(this)}
               value={this.props.email}
+              fontLoaded='false'
             />
           </CardSection>
           <CardSection>

@@ -21,7 +21,7 @@ const styles = {
     fontWeight: '400',
     paddingTop: 10,
     paddingBottom: 10,
-    fontFamily: 'IowanOldStyle',
+    fontFamily: 'AmericanTypewriter-CondensedLight',
     letterSpacing: 2
 
   },

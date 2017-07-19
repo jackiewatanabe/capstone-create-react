@@ -19,20 +19,6 @@ const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 export default class App extends Component {
   state = { loggedIn: null, themeSet: false, user: null, appIsReady: false, fontLoaded: false };
 
-
-  // async _loadAssetsAsync() {
-  //   const fontAssets = cacheFonts([
-  //     FontAwesome.font,
-  //     IowanOldStyle.font
-  //   ]);
-  //
-  //   await Promise.all([
-  //     ...fontAssets,
-  //   ]);
-  //
-  //   this.setState({appIsReady: true});
-  // }
-  //
   async componentDidMount() {
     await Font.loadAsync({
       'IowanOldStyle': require('./assets/fonts/iowan-old-style-bt.ttf'),

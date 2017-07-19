@@ -27,7 +27,7 @@ const styles = {
     fontSize: 15,
     lineHeight: 23,
     flex: 2,
-    fontFamily: 'IowanOldStyle'
+    fontFamily: 'AmericanTypewriter-CondensedLight'
   },
   labelStyle: {
     fontSize: 15,
