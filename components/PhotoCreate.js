@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ImagePicker } from 'expo';
 import { Text, Picker, CameraRoll, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -27,7 +28,7 @@ class PhotoCreate extends Component {
       // this.props.photoCreate({
       //   name, description, category: category || 'uncategorized', image_url });
 
-      Actions.example();
+      Actions.gallery();
   }
 
   getSelectedImages(images, current) {

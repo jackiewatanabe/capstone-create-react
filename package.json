@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "0.0.50",
+    "eslint-config-rallycoding": "^3.2.0",
     "jest-expo": "~18.0.0",
+    "react-native-scripts": "0.0.50",
     "react-test-renderer": "16.0.0-alpha.12"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -27,6 +28,7 @@
     "react-native-camera-roll-picker": "^1.1.9",
     "react-native-fetch-blob": "^0.10.6",
     "react-native-router-flux": "^3.38.0",
+    "react-native-share": "^1.0.20",
     "redux-thunk": "^2.2.0"
   }
 }

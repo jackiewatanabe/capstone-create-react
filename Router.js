@@ -7,6 +7,8 @@ import PhotoCreate from './components/PhotoCreate';
 import ThemePage from './components/ThemePage';
 import InspirationPage from './components/InspirationPage';
 import Example from './components/Example';
+import PhotoSelect from './components/PhotoSelect';
+import Gallery from './components/Gallery';
 // import CameraRolls from './components/CameraRolls';
 // import ImageBrowser from './components/ImageBrowser';
 
@@ -52,6 +54,15 @@ const RouterComponent = () => {
           key="example" component={Example}
           title="Example"
         />
+        <Scene
+          key="photoSelect" component={PhotoSelect}
+          title="Photo Select"
+        />
+        <Scene
+          key="gallery" component={Gallery}
+          title="Gallery"
+        />
+
       </Scene>
     </Router>
   );
